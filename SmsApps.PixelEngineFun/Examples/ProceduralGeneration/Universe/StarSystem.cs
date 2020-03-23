@@ -94,10 +94,9 @@ namespace SmsApps.PixelEngineFun.Examples.ProceduralGeneration.Universe
         private uint Random()
         {
             ProcGen += 0xe120fc15;
-            ulong tmp;
-            tmp = (ulong)ProcGen * 0x4a39b70d;
+            ulong tmp = (ulong)ProcGen * 0x4a39b70d;
             ulong m1 = (tmp >> 32) ^ tmp;
-            tmp = (ulong)m1 * 0x12fad5c9;
+            tmp = m1 * 0x12fad5c9;
             ulong m2 = (tmp >> 32) ^ tmp;
             return (uint)m2;
         }

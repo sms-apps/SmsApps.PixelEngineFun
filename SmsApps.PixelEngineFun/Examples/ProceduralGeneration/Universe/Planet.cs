@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace SmsApps.PixelEngineFun.Examples.ProceduralGeneration.Universe
 {
@@ -9,7 +8,6 @@ namespace SmsApps.PixelEngineFun.Examples.ProceduralGeneration.Universe
         public double Distance = 0.0;
         public double Foliage = 0.0;
         public double Gases = 0.0;
-        public Guid Id = Guid.NewGuid();
         public double Minerals = 0.0;
         public List<double> Moons = new List<double>();
         public double Population = 0.0;

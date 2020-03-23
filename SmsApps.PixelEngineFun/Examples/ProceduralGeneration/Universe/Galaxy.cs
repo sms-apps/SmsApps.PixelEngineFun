@@ -17,14 +17,14 @@ namespace SmsApps.PixelEngineFun.Examples.ProceduralGeneration.Universe
 
         public override void OnUpdate(float delta)
         {
-            if (Clock.Elapsed <= 0.0001f) return;
+            if (delta <= 0.0001f) return;
             Clear(Pixel.Presets.Black);
 
             // Handle mouse hover.
-            if (GetKey(Key.W).Pressed) vGalaxyOffset.y -= 50.0f * Clock.Elapsed;
-            if (GetKey(Key.S).Pressed) vGalaxyOffset.y += 50.0f * Clock.Elapsed;
-            if (GetKey(Key.A).Pressed) vGalaxyOffset.x -= 50.0f * Clock.Elapsed;
-            if (GetKey(Key.D).Pressed) vGalaxyOffset.x += 50.0f * Clock.Elapsed;
+            if (GetKey(Key.W).Down) vGalaxyOffset.y -= 50.0f * delta;
+            if (GetKey(Key.S).Down) vGalaxyOffset.y += 50.0f * delta;
+            if (GetKey(Key.A).Down) vGalaxyOffset.x -= 50.0f * delta;
+            if (GetKey(Key.D).Down) vGalaxyOffset.x += 50.0f * delta;
 
             int nSectorsX = ScreenWidth / 16;
             int nSectorsY = ScreenHeight / 16;
