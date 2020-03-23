@@ -26,28 +26,28 @@ namespace SmsApps.PixelEngineFun.Examples.ProceduralGeneration.Universe
             if (GetKey(Key.A).Down) vGalaxyOffset.x -= 50.0f * delta;
             if (GetKey(Key.D).Down) vGalaxyOffset.x += 50.0f * delta;
 
-            int nSectorsX = ScreenWidth / 16;
-            int nSectorsY = ScreenHeight / 16;
+            int sectorsX = ScreenWidth / 16;
+            int sectorsY = ScreenHeight / 16;
 
             Vector2 mouse = new Vector2(MouseX / 16, MouseY / 16);
-            Vector2 galaxy_mouse = mouse + vGalaxyOffset;
-            Vector2 screen_sector = new Vector2(0, 0);
+            //Vector2 galaxy_mouse = mouse + vGalaxyOffset;
+            Vector2 screenSector = new Vector2(0, 0);
 
-            for (screen_sector.x = 0; screen_sector.x < nSectorsX; screen_sector.x++)
+            for (screenSector.x = 0; screenSector.x < sectorsX; screenSector.x++)
             {
-                for (screen_sector.y = 0; screen_sector.y < nSectorsY; screen_sector.y++)
+                for (screenSector.y = 0; screenSector.y < sectorsY; screenSector.y++)
                 {
-                    uint seed1 = (uint)vGalaxyOffset.x + (uint)screen_sector.x;
-                    uint seed2 = (uint)vGalaxyOffset.y + (uint)screen_sector.y;
+                    uint seed1 = (uint)vGalaxyOffset.x + (uint)screenSector.x;
+                    uint seed2 = (uint)vGalaxyOffset.y + (uint)screenSector.y;
 
                     StarSystem star = new StarSystem(seed1, seed2);
                     if (star.Exists)
                     {
-                        var circlePoint = new Point((int)screen_sector.x * 16 + 8, (int)screen_sector.y * 16 + 8);
+                        var circlePoint = new Point((int)screenSector.x * 16 + 8, (int)screenSector.y * 16 + 8);
                         FillCircle(circlePoint, (int)star.Diameter / 8, star.Color);
 
                         // For convenience highlight hovered star
-                        if (mouse.x == screen_sector.x && mouse.y == screen_sector.y)
+                        if (mouse.x == screenSector.x && mouse.y == screenSector.y)
                         {
                             DrawCircle(circlePoint, 12, Pixel.Presets.Yellow);
                         }
@@ -85,22 +85,22 @@ namespace SmsApps.PixelEngineFun.Examples.ProceduralGeneration.Universe
                 DrawRect(new Point(8, 240), 496, 232, Pixel.Presets.White);
 
                 // Draw Star
-                var vBody = new Vector2(14, 356);
-                vBody.Set((float)(vBody.x + (star.Diameter * 1.375)), vBody.y);
+                var starBody = new Vector2(14, 356);
+                starBody.Set((float)(starBody.x + (star.Diameter * 1.375)), starBody.y);
 
-                FillCircle(vBody, (int)(star.Diameter * 1.375), star.Color);
-                vBody.Set((float)(vBody.x + (star.Diameter * 1.375) + 8), vBody.y);
+                FillCircle(starBody, (int)(star.Diameter * 1.375), star.Color);
+                starBody.Set((float)(starBody.x + (star.Diameter * 1.375) + 8), starBody.y);
 
                 // Draw Planets
                 foreach (var planet in star.Planets)
                 {
-                    if (vBody.x + planet.Diameter >= 496) break;
+                    if (starBody.x + planet.Diameter >= 496) break;
 
-                    vBody.Set((float)(vBody.x + planet.Diameter), vBody.y);
-                    FillCircle(vBody, (int)(planet.Diameter * 1.0), Pixel.Presets.Red);
+                    starBody.Set((float)(starBody.x + planet.Diameter), starBody.y);
+                    FillCircle(starBody, (int)(planet.Diameter * 1.0), Pixel.Presets.Red);
 
-                    var vMoon = vBody;
-                    vMoon.Set(vMoon.x, (float)(planet.Diameter + 10));
+                    var vMoon = starBody;
+                    vMoon.Set(vMoon.x, (float)(vMoon.y + planet.Diameter + 10));
 
                     // Draw Moons
                     foreach (var moon in planet.Moons)
@@ -110,7 +110,7 @@ namespace SmsApps.PixelEngineFun.Examples.ProceduralGeneration.Universe
                         vMoon.Set(vMoon.x, (float)(vMoon.y + moon + 10));
                     }
 
-                    vBody.Set((float)(vBody.x + planet.Diameter + 8), vBody.y);
+                    starBody.Set((float)(starBody.x + planet.Diameter + 8), starBody.y);
                 }
             }
         }
