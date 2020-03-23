@@ -6,7 +6,7 @@ namespace SmsApps.PixelEngineFun.Examples.ProceduralGeneration.Universe
 {
     public class StarSystem
     {
-        private uint[] starColours = new uint[8]
+        private readonly uint[] starColours = new uint[8]
         {
             0xFFFFFFFF, 0xFFD9FFFF, 0xFFA3FFFF, 0xFFFFC8C8,
             0xFFFFCB9D, 0xFF9F9FFF, 0xFF415EFF, 0xFF28199D
@@ -18,7 +18,7 @@ namespace SmsApps.PixelEngineFun.Examples.ProceduralGeneration.Universe
         public uint ProcGen = 0;
         public double Diameter { get; set; }
         public bool Exists { get; set; }
-        public List<Planet> Planets { get; set; }
+        public List<Planet> Planets { get; set; } = new List<Planet>();
 
         #endregion Properties
 
@@ -41,49 +41,49 @@ namespace SmsApps.PixelEngineFun.Examples.ProceduralGeneration.Universe
             if (!generateFullSystem) return;
 
             // If we are viewing the system map, we need to generate the full system.
-            double dDistanceFromStar = RandomDouble(60.0, 200.0);
-            int nPlanets = RandomInt(0, 10);
+            double distanceFromStar = RandomDouble(60.0, 200.0);
+            int planets = RandomInt(0, 10);
 
-            for (int i = 0; i < nPlanets; i++)
+            for (int i = 0; i < planets; i++)
             {
-                Planet p = new Planet { Distance = dDistanceFromStar };
+                Planet planet = new Planet { Distance = distanceFromStar };
 
                 // bump distance from star for next iteration
-                dDistanceFromStar += RandomDouble(20.0, 200.0);
-                p.Diameter = RandomDouble(4.0, 20.0);
+                distanceFromStar += RandomDouble(20.0, 200.0);
+                planet.Diameter = RandomDouble(4.0, 20.0);
 
                 // Could make temeprature a function of distance from star
-                p.Temperature = RandomDouble(-200.0, 300.0);
+                planet.Temperature = RandomDouble(-200.0, 300.0);
 
                 // Composition of planet
-                p.Foliage = RandomDouble(0.0, 1.0);
-                p.Minerals = RandomDouble(0.0, 1.0);
-                p.Gases = RandomDouble(0.0, 1.0);
-                p.Water = RandomDouble(0.0, 1.0);
+                planet.Foliage = RandomDouble(0.0, 1.0);
+                planet.Minerals = RandomDouble(0.0, 1.0);
+                planet.Gases = RandomDouble(0.0, 1.0);
+                planet.Water = RandomDouble(0.0, 1.0);
 
                 // Normalise to 100%
-                double dSum = 1.0 / (p.Foliage + p.Minerals + p.Gases + p.Water);
-                p.Foliage *= dSum;
-                p.Minerals *= dSum;
-                p.Gases *= dSum;
-                p.Water *= dSum;
+                double dSum = 1.0 / (planet.Foliage + planet.Minerals + planet.Gases + planet.Water);
+                planet.Foliage *= dSum;
+                planet.Minerals *= dSum;
+                planet.Gases *= dSum;
+                planet.Water *= dSum;
 
                 // Population could be a function of other habitat encouraging properties, such as temperature and water
-                p.Population = Math.Max(RandomInt(-5000000, 20000000), 0);
+                planet.Population = Math.Max(RandomInt(-5000000, 20000000), 0);
 
                 // 10% of planets have a ring
-                p.Ring = RandomInt(0, 10) == 1;
+                planet.Ring = RandomInt(0, 10) == 1;
 
                 // Satellites (Moons)
-                int nMoons = Math.Max(RandomInt(-5, 5), 0);
-                for (int n = 0; n < nMoons; n++)
+                int moons = Math.Max(RandomInt(-5, 5), 0);
+                for (int n = 0; n < moons; n++)
                 {
                     // A moon is just a diameter for now, but it could be whatever you want!
-                    p.Moons.Add(RandomDouble(1.0, 5.0));
+                    planet.Moons.Add(RandomDouble(1.0, 5.0));
                 }
 
                 // Add planet to list
-                Planets.Add(p);
+                Planets.Add(planet);
             }
         }
 

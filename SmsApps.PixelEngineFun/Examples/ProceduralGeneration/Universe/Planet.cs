@@ -11,7 +11,7 @@ namespace SmsApps.PixelEngineFun.Examples.ProceduralGeneration.Universe
         public double Gases = 0.0;
         public Guid Id = Guid.NewGuid();
         public double Minerals = 0.0;
-        public List<double> Moons;
+        public List<double> Moons = new List<double>();
         public double Population = 0.0;
         public bool Ring = false;
         public double Temperature = 0.0;
