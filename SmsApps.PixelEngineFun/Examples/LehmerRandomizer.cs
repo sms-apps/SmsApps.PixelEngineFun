@@ -1,6 +1,6 @@
 ﻿namespace SmsApps.PixelEngineFun.Examples
 {
-    public class LehmerRandomizer
+    public class LehmerRandomizer : IRandomizer
     {
         private uint _seed;
 

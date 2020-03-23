@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Examples\IRandomizer.cs" />
     <Compile Include="Examples\LehmerRandomizer.cs" />
     <Compile Include="Examples\ProceduralGeneration\Universe\Galaxy.cs" />
     <Compile Include="Examples\ProceduralGeneration\Universe\Planet.cs" />

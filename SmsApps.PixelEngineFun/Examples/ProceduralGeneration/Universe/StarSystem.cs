@@ -16,7 +16,7 @@ namespace SmsApps.PixelEngineFun.Examples.ProceduralGeneration.Universe
 
         public Pixel Color = Pixel.Presets.White;
         public uint ProcGen = 0;
-        private readonly LehmerRandomizer _randomizer;
+        private readonly IRandomizer _randomizer;
         public double Diameter { get; set; }
         public bool Exists { get; set; }
         public List<Planet> Planets { get; set; } = new List<Planet>();
@@ -32,7 +32,7 @@ namespace SmsApps.PixelEngineFun.Examples.ProceduralGeneration.Universe
             //ProcGen = (x & 0xFFFF) << 16 | (y & 0xFFFF);
 
             // Not all locations contain a system
-            Exists = (_randomizer.RandomInt(0, 20) == 1);
+            Exists = _randomizer.RandomInt(0, 20) == 1;
             if (!Exists) return;
 
             // Generate Star
