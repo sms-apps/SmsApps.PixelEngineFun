@@ -50,7 +50,6 @@
     <Compile Include="Common\LehmerRandomizer.cs" />
     <Compile Include="Examples\ProceduralGeneration\Universe\Galaxy.cs" />
     <Compile Include="Examples\ProceduralGeneration\Universe\Planet.cs" />
-    <Compile Include="Examples\ProceduralGeneration\Universe\StarColors.cs" />
     <Compile Include="Examples\ProceduralGeneration\Universe\StarSystem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Examples\RandomPixels.cs" />
