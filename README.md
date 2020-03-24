@@ -1,5 +1,5 @@
 # SmsApps.PixelEngineFun
-Having fun using the Pixel-Engine as forked from https://github.com/ninjapretzel/Pixel-Engine, which is a C# port https://github.com/OneLoneCoder/olcPixelGameEngine.
+Having fun using the Pixel-Engine as forked from https://github.com/ninjapretzel/Pixel-Engine, which is a C# port of https://github.com/OneLoneCoder/olcPixelGameEngine.
 
 Libraries is the folder containing the actual C# port of Pixel-Engine in DLL form. All I've done there is copied over the .DLL, .PDB and .XML files from the Libraries folder in that repo and dropped them into the solution, then referenced them in the main project.
 
