@@ -5,10 +5,10 @@ namespace SmsApps.PixelEngineFun.Examples.ProceduralGeneration.Universe
 {
     public class Galaxy : Game
     {
-        public bool bStarSelected = false;
-        public uint nSelectedStarSeed1 = 0;
-        public uint nSelectedStarSeed2 = 0;
-        public Vector2 vGalaxyOffset = new Vector2(0, 0);
+        public Vector2 GalaxyOffset = new Vector2(0, 0);
+        public uint SelectedStarSeed1 = 0;
+        public uint SelectedStarSeed2 = 0;
+        public bool StarSelected = false;
 
         public Galaxy()
         {
@@ -21,10 +21,10 @@ namespace SmsApps.PixelEngineFun.Examples.ProceduralGeneration.Universe
             Clear(Pixel.Presets.Black);
 
             // Handle mouse hover.
-            if (GetKey(Key.W).Down) vGalaxyOffset.y -= 50.0f * delta;
-            if (GetKey(Key.S).Down) vGalaxyOffset.y += 50.0f * delta;
-            if (GetKey(Key.A).Down) vGalaxyOffset.x -= 50.0f * delta;
-            if (GetKey(Key.D).Down) vGalaxyOffset.x += 50.0f * delta;
+            if (GetKey(Key.W).Down) GalaxyOffset.y -= 50.0f * delta;
+            if (GetKey(Key.S).Down) GalaxyOffset.y += 50.0f * delta;
+            if (GetKey(Key.A).Down) GalaxyOffset.x -= 50.0f * delta;
+            if (GetKey(Key.D).Down) GalaxyOffset.x += 50.0f * delta;
 
             int sectorsX = ScreenWidth / 16;
             int sectorsY = ScreenHeight / 16;
@@ -37,8 +37,8 @@ namespace SmsApps.PixelEngineFun.Examples.ProceduralGeneration.Universe
             {
                 for (screenSector.y = 0; screenSector.y < sectorsY; screenSector.y++)
                 {
-                    uint seed1 = (uint)vGalaxyOffset.x + (uint)screenSector.x;
-                    uint seed2 = (uint)vGalaxyOffset.y + (uint)screenSector.y;
+                    uint seed1 = (uint)GalaxyOffset.x + (uint)screenSector.x;
+                    uint seed2 = (uint)GalaxyOffset.y + (uint)screenSector.y;
 
                     StarSystem star = new StarSystem(seed1, seed2);
                     if (star.Exists)
@@ -58,27 +58,27 @@ namespace SmsApps.PixelEngineFun.Examples.ProceduralGeneration.Universe
             // Handle Mouse Click
             if (GetMouse(0).Pressed)
             {
-                uint seed1 = (uint)vGalaxyOffset.x + (uint)mouse.x;
-                uint seed2 = (uint)vGalaxyOffset.y + (uint)mouse.y;
+                uint seed1 = (uint)GalaxyOffset.x + (uint)mouse.x;
+                uint seed2 = (uint)GalaxyOffset.y + (uint)mouse.y;
 
                 var star = new StarSystem(seed1, seed2);
                 if (star.Exists)
                 {
-                    bStarSelected = true;
-                    nSelectedStarSeed1 = seed1;
-                    nSelectedStarSeed2 = seed2;
+                    StarSelected = true;
+                    SelectedStarSeed1 = seed1;
+                    SelectedStarSeed2 = seed2;
                 }
                 else
                 {
-                    bStarSelected = false;
+                    StarSelected = false;
                 }
             }
 
             // Draw Details of selected star system
-            if (bStarSelected)
+            if (StarSelected)
             {
                 // Generate full star system
-                var star = new StarSystem(nSelectedStarSeed1, nSelectedStarSeed2, true);
+                var star = new StarSystem(SelectedStarSeed1, SelectedStarSeed2, true);
 
                 // Draw Window
                 FillRect(new Point(8, 240), 496, 232, Pixel.Presets.DarkBlue);
