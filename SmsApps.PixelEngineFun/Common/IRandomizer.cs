@@ -1,4 +1,4 @@
-﻿namespace SmsApps.PixelEngineFun.Examples
+﻿namespace SmsApps.PixelEngineFun.Common
 {
     /// <summary> Represents a custom random number generator. </summary>
     public interface IRandomizer

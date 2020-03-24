@@ -1,4 +1,5 @@
 ﻿using PixelEngine;
+using SmsApps.PixelEngineFun.Common;
 using System;
 using System.Collections.Generic;
 
@@ -6,19 +7,20 @@ namespace SmsApps.PixelEngineFun.Examples.ProceduralGeneration.Universe
 {
     public class StarSystem
     {
-        private readonly uint[] starColours = new uint[8]
-        {
-            0xFFFFFFFF, 0xFFD9FFFF, 0xFFA3FFFF, 0xFFFFC8C8,
-            0xFFFFCB9D, 0xFF9F9FFF, 0xFF415EFF, 0xFF28199D
-        };
-
         #region Properties
 
         public Pixel Color = Pixel.Presets.White;
+
         public uint ProcGen = 0;
+
         private readonly IRandomizer _randomizer;
+
+        private readonly uint[] starColours = new uint[8] { 0xFFFFFFFF, 0xFFD9FFFF, 0xFFA3FFFF, 0xFFFFC8C8, 0xFFFFCB9D, 0xFF9F9FFF, 0xFF415EFF, 0xFF28199D };
+
         public double Diameter { get; set; }
+
         public bool Exists { get; set; }
+
         public List<Planet> Planets { get; set; } = new List<Planet>();
 
         #endregion Properties
